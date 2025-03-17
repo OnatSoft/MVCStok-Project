@@ -1,0 +1,44 @@
+﻿@using MVCStok_Project.Models.Entity
+@model List<Urunler_TBL>
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1> Ürünler </h1>
+
+<br />
+
+<a class="btn btn-primary" href="/Product/ProductAdd"> Yeni Ürün Ekle </a>
+
+<br /><br />
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th> ID </th>
+        <th> Kategori Adı </th>
+        <th> Ürün Adı </th>
+        <th> Marka </th>
+        <th> Stok </th>
+        <th> Fiyat </th>
+        <th> İşlemler </th>
+    </tr>
+    <tbody>
+        @foreach (var urun in Model)
+        {
+            <tr>
+                <td> @urun.UrunID </td>
+                <td> @urun.Kategoriler_TBL.KategoriAd </td>
+                <td> @urun.UrunAd </td>
+                <td> @urun.UrunMarka </td>
+                <td> @urun.Stok </td>
+                <td> @urun.Fiyat TL </td>
+                <td>
+                    <button class="btn btn-outline-secondary btn-group"> Güncelle </button>
+                    <button class="btn btn-outline-danger btn-group"> Sil </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

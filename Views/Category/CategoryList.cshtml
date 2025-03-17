@@ -1,0 +1,36 @@
+﻿@using MVCStok_Project.Models.Entity
+@model List<Kategoriler_TBL>
+
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1> Kategoriler </h1>
+
+<br />
+
+<a href="/Category/AddCategory" class="btn btn-primary"> Yeni Kategori Ekle </a>
+
+<br /><br />
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th> ID </th>
+        <th> Kategori Adı </th>
+        <th> İşlemler </th>
+    </tr>
+    <tbody>
+        @foreach (var ktg in Model)
+            {
+                <tr>
+                    <td> @ktg.KategoriID </td>
+                    <td> @ktg.KategoriAd </td>
+                    <td>
+                        <button class="btn btn-outline-secondary btn-group"> Güncelle </button>
+                        <button class="btn btn-outline-danger btn-group"> Sil </button>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
