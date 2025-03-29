@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using MVCStok_Project.Models.Entity;
 
 namespace MVCStok_Project.Controllers
@@ -31,11 +32,36 @@ namespace MVCStok_Project.Controllers
         [HttpPost]
         public ActionResult AddCategory(Kategoriler_TBL kategoriler_)
         {
-            if (kategoriler_ != null)
+            if (!ModelState.IsValid)
             {
-                db.Kategoriler_TBL.Add(kategoriler_);
-                db.SaveChanges();
+                return View("AddCategory");
             }
+            db.Kategoriler_TBL.Add(kategoriler_);
+            db.SaveChanges();
+            return RedirectToAction("CategoryList");
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            var kategori = db.Kategoriler_TBL.Find(id);
+            db.Kategoriler_TBL.Remove(kategori);
+            db.SaveChanges();
+            return RedirectToAction("CategoryList");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateCategory(int id)
+        {
+            var ktgr = db.Kategoriler_TBL.Find(id);
+            return View("UpdateCategory", ktgr);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCategory(Kategoriler_TBL ktgr)
+        {
+            var kategori = db.Kategoriler_TBL.Find(ktgr.KategoriID);
+            kategori.KategoriAd = ktgr.KategoriAd;
+            db.SaveChanges();
             return RedirectToAction("CategoryList");
         }
     }

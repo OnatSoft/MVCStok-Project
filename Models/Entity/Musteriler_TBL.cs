@@ -11,7 +11,8 @@ namespace MVCStok_Project.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Musteriler_TBL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,13 @@ namespace MVCStok_Project.Models.Entity
         }
     
         public int MusteriID { get; set; }
+
+        [Required(ErrorMessage = "Lütfen müþteri adýný giriniz.")] //=> Müþteri adý ve soyadý için doðrulama iþlemlerinde mesaj girildi.
+        [StringLength(50, ErrorMessage = "Ad alaný 50 karakteri geçemez.")]
         public string MusteriAd { get; set; }
+
+        [Required(ErrorMessage = "Lütfen müþteri soyadýný giriniz.")]
+        [StringLength(50, ErrorMessage = "Soyad alaný 50 karakteri geçemez.")]
         public string MusteriSoyad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

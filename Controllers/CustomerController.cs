@@ -35,11 +35,37 @@ namespace MVCStok_Project.Controllers
         public ActionResult CustomerAdd(Musteriler_TBL musteriler_)
         {
             //-> Müşteri ekleme sayfasında "Kaydet" butonuna tıklandığında bu POST işlem methodu çalışıyor ve yeni müşteri kaydediliyor.
-            if (musteriler_ != null)
+            if (!ModelState.IsValid)
             {
-                db.Musteriler_TBL.Add(musteriler_);
-                db.SaveChangesAsync();
+                return View("CustomerAdd");
             }
+            db.Musteriler_TBL.Add(musteriler_);
+            db.SaveChanges();
+            return RedirectToAction("CustomerList");
+        }
+
+        public ActionResult DeleteCustomer(int id)
+        {
+            var musteri = db.Musteriler_TBL.Find(id);
+            db.Musteriler_TBL.Remove(musteri);
+            db.SaveChanges();
+            return RedirectToAction("CustomerList");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateCustomer(int id)
+        {
+            var musteri = db.Musteriler_TBL.Find(id);
+            return View("UpdateCustomer", musteri);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCustomer(Musteriler_TBL mst)
+        {
+            var musteri = db.Musteriler_TBL.Find(mst.MusteriID);
+            musteri.MusteriAd = mst.MusteriAd;
+            musteri.MusteriSoyad = mst.MusteriSoyad;
+            db.SaveChanges();
             return RedirectToAction("CustomerList");
         }
     }

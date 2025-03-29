@@ -1,0 +1,22 @@
+﻿@model MVCStok_Project.Models.Entity.Musteriler_TBL
+
+@{
+    ViewBag.Title = "UpdateCustomer";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2> Müşteri Güncelleme </h2>
+
+@using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.MusteriID, new { @class="form-control" })
+    <div>
+        <p class="form-label"> Müşteri Adı: </p>
+        @Html.TextBoxFor(m => m.MusteriAd, new { @class="form-control" })
+        <br />
+        <p class="form-label"> Müşteri Soyadı: </p>
+        @Html.TextBoxFor(m => m.MusteriSoyad, new { @class="form-control" })
+        <br />
+    </div>
+    <button class="btn btn-success"> Güncelle </button>
+}

@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h1> Ürün Ekle </h1>
+<h1> Ürün Ekleme </h1>
 
 <br /><br />
 
 <form method="post">
     <div>
         <label class="form-label"> Kategori Seçiniz </label>
-        @Html.DropDownListFor(m=> m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.ktg, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.ktg, new { @class = "form-control" })
         <br />
         <label class="form-label"> Ürün Adı: </label>
         <input name="UrunAd" class="form-control" type="text" />

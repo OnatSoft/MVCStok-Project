@@ -1,10 +1,11 @@
-﻿
+﻿@model MVCStok_Project.Models.Entity.Musteriler_TBL
+
 @{
     ViewBag.Title = "CustomerAdd";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h1> Müşteri Ekle </h1>
+<h1> Müşteri Ekleme </h1>
 
 <br />
 
@@ -12,11 +13,13 @@
 
     <div>
         <label class="form-label"> Müşteri Adı: </label>
-        <input class="form-control" name="MusteriAd" type="text" />
+        @Html.TextBoxFor(m => m.MusteriAd, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriAd, "", new { @style="color:red" })
         <br />
         <label class="form-label"> Müşteri Soyadı: </label>
-        <input class="form-control" name="MusteriSoyad" type="text" />
-        &nbsp;
+        @Html.TextBoxFor(m => m.MusteriSoyad, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriSoyad, "", new { @style="color:red" })
+        <br />
     </div>
     <button class="btn btn-success"> Kaydet </button>
 

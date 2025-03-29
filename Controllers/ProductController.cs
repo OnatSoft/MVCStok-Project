@@ -45,11 +45,50 @@ namespace MVCStok_Project.Controllers
             // RedirectToAction ile post işlemi gerçekleştikten sonra geri ürünler listesine yönlendiriyor.
             if (urunler_ != null)
             {
-                var ktg = db.Kategoriler_TBL.Where(m=>m.KategoriID == urunler_.Kategoriler_TBL.KategoriID).FirstOrDefault();
+                var ktg = db.Kategoriler_TBL.Where(m => m.KategoriID == urunler_.Kategoriler_TBL.KategoriID).FirstOrDefault();
                 urunler_.Kategoriler_TBL = ktg;
                 db.Urunler_TBL.Add(urunler_);
                 db.SaveChanges();
             }
+            return RedirectToAction("ProductList");
+        }
+
+        public ActionResult DeleteProduct(int id)
+        {
+            //-> Ürün silme işlemi yapılıyor.
+            var urun = db.Urunler_TBL.Find(id);
+            db.Urunler_TBL.Remove(urun);
+            db.SaveChanges();
+            return RedirectToAction("ProductList");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateProduct(int id)
+        {
+            var urun = db.Urunler_TBL.Find(id);
+            List<SelectListItem> items = (from i in db.Kategoriler_TBL.ToList()
+                                          select new SelectListItem
+                                          {
+                                              Value = i.KategoriID.ToString(),
+                                              Text = i.KategoriAd,
+                                          }).ToList();
+            
+            ViewBag.val = items;
+            return View("UpdateProduct", urun);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProduct(Urunler_TBL urunler)
+        {
+            var urun = db.Urunler_TBL.Find(urunler.UrunID);
+            urun.UrunAd = urunler.UrunAd;
+            urun.Stok = urunler.Stok;
+            urun.UrunMarka = urunler.UrunMarka;
+            urun.Fiyat = urunler.Fiyat;
+            var ktgr = db.Kategoriler_TBL.Where(m => m.KategoriID == urunler.Kategoriler_TBL.KategoriID).FirstOrDefault();
+            urun.UrunKategori = ktgr.KategoriID;
+
+            db.SaveChanges();
             return RedirectToAction("ProductList");
         }
     }

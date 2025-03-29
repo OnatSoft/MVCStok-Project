@@ -1,0 +1,33 @@
+﻿@model MVCStok_Project.Models.Entity.Urunler_TBL
+
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2> Ürün Güncelleme </h2>
+
+<br />
+
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.UrunID)
+    <div>
+        <label class="form-label"> Ürün Kategorisi: </label>
+        @Html.DropDownListFor(m => m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.val, new { @class="form-control" })
+        <br />
+        <label class="form-label"> Ürün Adı: </label>
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control" })
+        <br />
+        <label class="form-label"> Marka: </label>
+        @Html.TextBoxFor(m => m.UrunMarka, new { @class = "form-control" })
+        <br />
+        <label class="form-label"> Stok: </label>
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+        <br />
+        <label class="form-label"> Fiyat: </label>
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+    </div>
+    <br />
+    <button class="btn btn-success"> Güncelle </button>
+}
