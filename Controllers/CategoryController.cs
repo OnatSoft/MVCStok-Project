@@ -59,6 +59,10 @@ namespace MVCStok_Project.Controllers
         [HttpPost]
         public ActionResult UpdateCategory(Kategoriler_TBL ktgr)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("UpdateCategory");
+            }
             var kategori = db.Kategoriler_TBL.Find(ktgr.KategoriID);
             kategori.KategoriAd = ktgr.KategoriAd;
             db.SaveChanges();

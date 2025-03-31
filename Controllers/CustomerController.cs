@@ -17,11 +17,19 @@ namespace MVCStok_Project.Controllers
 
         MvcStokDBEntities1 db = new MvcStokDBEntities1();
 
-        public ActionResult CustomerList()
+        public ActionResult CustomerList(string param)
         {
             //-> Veritabanına kaydedilen müşterileri listeleme view sayfası.
-            var values = db.Musteriler_TBL.ToList();
-            return View(values);
+            //-> Müşteri adı arama kutusu yapımı.
+            var values = from d in db.Musteriler_TBL select d;
+            if (!string.IsNullOrEmpty(param))
+            {
+                values = values.Where(m => m.MusteriAd.Contains(param));
+            }
+            return View(values.ToList());
+
+            //var values = db.Musteriler_TBL.ToList();
+            //return View(values);
         }
         
         [HttpGet]
@@ -62,6 +70,11 @@ namespace MVCStok_Project.Controllers
         [HttpPost]
         public ActionResult UpdateCustomer(Musteriler_TBL mst)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("UpdateCustomer");
+            }
+
             var musteri = db.Musteriler_TBL.Find(mst.MusteriID);
             musteri.MusteriAd = mst.MusteriAd;
             musteri.MusteriSoyad = mst.MusteriSoyad;

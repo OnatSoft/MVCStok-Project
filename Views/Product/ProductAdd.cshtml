@@ -15,16 +15,16 @@
         @Html.DropDownListFor(m => m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.ktg, new { @class = "form-control" })
         <br />
         <label class="form-label"> Ürün Adı: </label>
-        <input name="UrunAd" class="form-control" type="text" />
+        <input name="UrunAd" class="form-control" type="text" required maxlength="30" />
         <br />
         <label class="form-label"> Marka: </label>
-        <input class="form-control" name="UrunMarka" type="text" />
+        <input class="form-control" name="UrunMarka" type="text" required maxlength="20" />
         <br />
         <label class="form-label"> Stok: </label>
-        <input class="form-control" name="Stok" type="number" />
+        <input class="form-control" name="Stok" type="number" required maxlength="4" />
         <br />
         <label class="form-label"> Fiyat: </label>
-        <input class="form-control" name="Fiyat" type="number" />
+        <input class="form-control" name="Fiyat" type="number" required prefix="TL" />
         &nbsp;
     </div>
     <button class="btn btn-success"> Kaydet </button>

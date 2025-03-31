@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h1> Kategoriler </h1>
+<h2> Kategoriler </h2>
 
 <br />
 
@@ -21,14 +21,14 @@
         <th> İşlemler </th>
     </tr>
     <tbody>
-        @foreach (var ktg in Model)
+        @foreach (var item in Model)
             {
                 <tr>
-                    <td> @ktg.KategoriID </td>
-                    <td> @ktg.KategoriAd </td>
+                    <td> @item.KategoriID </td>
+                    <td> @item.KategoriAd </td>
                     <td>
-                        <a class="btn btn-outline-info btn-group" href="/Category/UpdateCategory/@ktg.KategoriID"> Güncelle </a>
-                        <a class="btn btn-outline-danger btn-group" href="/Category/DeleteCategory/@ktg.KategoriID"> Sil </a>
+                        <a class="btn btn-outline-info btn-group" href="/Category/UpdateCategory/@item.KategoriID"> Güncelle </a>
+                        <a class="btn btn-outline-danger btn-group" href="/Category/DeleteCategory/@item.KategoriID" onclick="return confirm('Seçili kategoriyi kalıcı silmek istiyor musunuz?')"> Sil </a>
                     </td>
                 </tr>
             }

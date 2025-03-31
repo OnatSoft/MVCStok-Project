@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Razor.Generator;
 using MVCStok_Project.Models.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MVCStok_Project.Controllers
 {
@@ -17,10 +20,11 @@ namespace MVCStok_Project.Controllers
 
         MvcStokDBEntities1 db = new MvcStokDBEntities1();
 
-        public ActionResult ProductList()
+        public ActionResult ProductList(int page = 1)
         {
             //-> ProductList isimli view sayfasına veritabanında bulunan ürünler listeleniyor.
-            var values = db.Urunler_TBL.ToList();
+            //-- Genel Kullanım: var values = db.Urunler_TBL.ToList();
+            var values = db.Urunler_TBL.ToList().ToPagedList(page, 4);
             return View(values);
         }
 
@@ -43,13 +47,11 @@ namespace MVCStok_Project.Controllers
         {
             //-> Ürün ekleme sayfasında POST işlemi gerçekleştiğinde dropdownlist'te seçilen kategori değerinin ID'si ile kaydediliyor.
             // RedirectToAction ile post işlemi gerçekleştikten sonra geri ürünler listesine yönlendiriyor.
-            if (urunler_ != null)
-            {
-                var ktg = db.Kategoriler_TBL.Where(m => m.KategoriID == urunler_.Kategoriler_TBL.KategoriID).FirstOrDefault();
-                urunler_.Kategoriler_TBL = ktg;
-                db.Urunler_TBL.Add(urunler_);
-                db.SaveChanges();
-            }
+
+            var ktg = db.Kategoriler_TBL.Where(m => m.KategoriID == urunler_.Kategoriler_TBL.KategoriID).FirstOrDefault();
+            urunler_.Kategoriler_TBL = ktg;
+            db.Urunler_TBL.Add(urunler_);
+            db.SaveChanges();
             return RedirectToAction("ProductList");
         }
 
@@ -80,6 +82,11 @@ namespace MVCStok_Project.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(Urunler_TBL urunler)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("UpdateProduct");
+            //}
+
             var urun = db.Urunler_TBL.Find(urunler.UrunID);
             urun.UrunAd = urunler.UrunAd;
             urun.Stok = urunler.Stok;

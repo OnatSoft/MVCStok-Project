@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-bs-target="#helpModal" data-bs-toggle="modal"> Hakkında </button>
+
+<div>
+    <div class="modal" id="helpModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="modal-title"> Hakkında </h2>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Bu web site, bir mağazanın ürün stoğunu, bulunan ürünleri kategorilendirerek listeleme yapabilmeyi,
+                        mağazadan alışveriş yapan müşterileri sisteme kaydedebilmeyi ve yapılan tüm satışları kaydedebilmeyi sağlaması amacıyla
+                        <b>Onat Somer</b> tarafından ASP.Net MVC Framework kullanılarak Mart 2025 tarihinde örnek bir proje olarak geliştirilmiştir.
+                    </p>
+                    <p>
+                        <b>Proje Başlangıç Tarihi:</b> 16.03.2025 Pazar <br />
+                        <b>Proje Bitiş Tarihi:</b> 31.03.2025 Pazartesi (Ramazan Bayramının İkinci Günü) <br />
+                        Proje Murat Yücedağ'ın Youtube kanalında bulunan <a href="https://youtube.com/playlist?list=PLKnjBHu2xXNNRPqfdZC6hNmJKOqIIpqNj" target="_blank" class="btn-link">"50 Derste MVC"</a>
+                        eğitim serisiyle birlikte geliştirilmiştir. <br />
+                        <b>Projenin Github Reposu:</b> <a href="https://github.com/OnatSoft/MVCStok-Project" target="_blank" class="btn-link"> https://github.com/OnatSoft/MVCStok-Project </a>
+                    </p>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Kapat </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

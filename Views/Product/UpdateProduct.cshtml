@@ -14,19 +14,23 @@
     @Html.HiddenFor(m => m.UrunID)
     <div>
         <label class="form-label"> Ürün Kategorisi: </label>
-        @Html.DropDownListFor(m => m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.val, new { @class="form-control" })
+        @Html.DropDownListFor(m => m.Kategoriler_TBL.KategoriID, (List<SelectListItem>)ViewBag.val, new { @class = "form-control" })
         <br />
         <label class="form-label"> Ürün Adı: </label>
-        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control", @type="text", @required="" })
+        @Html.ValidationMessageFor(m => m.UrunAd, "", new { @style = "color:red" })
         <br />
         <label class="form-label"> Marka: </label>
-        @Html.TextBoxFor(m => m.UrunMarka, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.UrunMarka, new { @class = "form-control", @type="text", @required="" })
+        @Html.ValidationMessageFor(m => m.UrunMarka, "", new { @style = "color:red" })
         <br />
         <label class="form-label"> Stok: </label>
-        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control", @type="number", @required="" })
+        @Html.ValidationMessageFor(m => m.Stok, "", new { @style = "color:red" })
         <br />
         <label class="form-label"> Fiyat: </label>
-        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control", @required="" })
+        @Html.ValidationMessageFor(m => m.Fiyat, "", new { @style = "color:red" })
     </div>
     <br />
     <button class="btn btn-success"> Güncelle </button>

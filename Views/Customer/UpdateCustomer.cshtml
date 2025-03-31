@@ -9,13 +9,16 @@
 
 @using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
 {
-    @Html.HiddenFor(m => m.MusteriID, new { @class="form-control" })
+    @Html.HiddenFor(m => m.MusteriID, new { @class = "form-control" })
     <div>
         <p class="form-label"> Müşteri Adı: </p>
-        @Html.TextBoxFor(m => m.MusteriAd, new { @class="form-control" })
+        @Html.TextBoxFor(m => m.MusteriAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriAd, "", new { @style = "color:red" })
         <br />
         <p class="form-label"> Müşteri Soyadı: </p>
-        @Html.TextBoxFor(m => m.MusteriSoyad, new { @class="form-control" })
+        @Html.TextBoxFor(m => m.MusteriSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriSoyad, "", new { @style = "color:red" })
+
         <br />
     </div>
     <button class="btn btn-success"> Güncelle </button>

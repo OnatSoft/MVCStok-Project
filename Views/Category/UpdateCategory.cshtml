@@ -10,10 +10,11 @@
 @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
 {
     <div>
-        @Html.HiddenFor(m => m.KategoriID, new { @class="form-control" })
+        @Html.HiddenFor(m => m.KategoriID, new { @class = "form-control" })
         <br />
         <p class="form-label"> Kategori Adı: </p>
-        @Html.TextBoxFor(m => m.KategoriAd, new { @class="form-control" })
+        @Html.TextBoxFor(m => m.KategoriAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.KategoriAd, "", new { @style = "color:red" })
         <br />
     </div>
     <div>

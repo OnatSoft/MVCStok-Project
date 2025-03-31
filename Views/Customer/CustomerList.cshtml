@@ -6,13 +6,22 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h1> Müşteriler </h1>
+<h2> Müşteriler </h2>
 
 <br />
 
+@using (Html.BeginForm("CustomerList", "Customer", FormMethod.Get))
+{
+    <p>
+        <b>Aranacak Müşteri: </b> @Html.TextBox("param")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
 <a class="btn btn-primary" href="/Customer/CustomerAdd"> Yeni Müşteri Ekle </a>
 
-<br /><br />
+<br />
+<br />
 
 <table class="table table-hover table-bordered">
     <tr>
@@ -21,16 +30,16 @@
         <th> İşlemler </th>
     </tr>
     <tbody>
-        @foreach(var mst in Model)
-            {
-                <tr>
-                    <td> @mst.MusteriID </td>
-                    <td> @mst.MusteriAd @mst.MusteriSoyad </td>
-                    <td>
-                        <a class="btn btn-outline-info btn-group" href="/Customer/UpdateCustomer/@mst.MusteriID"> Güncelle </a>
-                        <a class="btn btn-outline-danger btn-group" href="/Customer/DeleteCustomer/@mst.MusteriID"> Sil </a>
-                    </td>
-                </tr>
-            }
+        @foreach (var mst in Model)
+        {
+            <tr>
+                <td> @mst.MusteriID </td>
+                <td> @mst.MusteriAd @mst.MusteriSoyad </td>
+                <td>
+                    <a class="btn btn-outline-info btn-group" href="/Customer/UpdateCustomer/@mst.MusteriID"> Güncelle </a>
+                    <a class="btn btn-outline-danger btn-group" href="/Customer/DeleteCustomer/@mst.MusteriID" onclick="return confirm('Bu müşteriyi kalıcı silmek istiyor musunuz?')"> Sil </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

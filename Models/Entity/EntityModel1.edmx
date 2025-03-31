@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MvcStokDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MvcStokDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Kategoriler_TBL">
           <Key>
             <PropertyRef Name="KategoriID" />
@@ -26,9 +26,12 @@
           </Key>
           <Property Name="SatisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Urun" Type="int" Nullable="false" />
-          <Property Name="Adet" Type="tinyint" Nullable="false" />
-          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="30" />
+          <Property Name="Adet" Type="tinyint" />
           <Property Name="Musteri" Type="int" Nullable="false" />
+          <Property Name="MusteriTel" Type="varchar" MaxLength="10" />
+          <Property Name="MusteriMail" Type="varchar" MaxLength="30" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -106,8 +109,7 @@
             <End Role="Urunler_TBL" EntitySet="Urunler_TBL" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MvcStokDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -134,11 +136,14 @@
           </Key>
           <Property Name="SatisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Urun" Type="Int32" Nullable="false" />
-          <Property Name="Adet" Type="Byte" Nullable="false" />
-          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Adet" Type="Byte" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Musteri" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Musteriler_TBL" Relationship="Self.FK_Satislar_TBL_Musteriler_TBL" FromRole="Satislar_TBL" ToRole="Musteriler_TBL" />
           <NavigationProperty Name="Urunler_TBL" Relationship="Self.FK_Satislar_TBL_Urunler_TBL" FromRole="Satislar_TBL" ToRole="Urunler_TBL" />
+          <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MusteriTel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MusteriMail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -244,6 +249,9 @@
           <EntitySetMapping Name="Satislar_TBL">
             <EntityTypeMapping TypeName="MvcStokDBModel1.Satislar_TBL">
               <MappingFragment StoreEntitySet="Satislar_TBL">
+                <ScalarProperty Name="MusteriMail" ColumnName="MusteriMail" />
+                <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
                 <ScalarProperty Name="SatisID" ColumnName="SatisID" />
                 <ScalarProperty Name="Urun" ColumnName="Urun" />
                 <ScalarProperty Name="Adet" ColumnName="Adet" />

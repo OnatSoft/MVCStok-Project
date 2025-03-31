@@ -11,8 +11,7 @@ namespace MVCStok_Project.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Kategoriler_TBL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +21,6 @@ namespace MVCStok_Project.Models.Entity
         }
     
         public short KategoriID { get; set; }
-
-        [Required(ErrorMessage = "Lütfen kategori adý giriniz.")] //=> Kategori adý doðrulama iþleminde mesaj girildi.
         public string KategoriAd { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
